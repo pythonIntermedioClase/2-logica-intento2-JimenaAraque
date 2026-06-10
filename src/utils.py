@@ -108,10 +108,8 @@ def calcular_iva(valor_base, tasa=0.19):
         calcular_iva(0)                -> 0.0
     """
     # TODO:
-    # 1. Multiplica valor_base por tasa y guarda el resultado en una
-    #    variable llamada iva.
-    # 2. Retorna iva.
-    pass
+    return valor_base*tasa
+
 
 
 def formatear_reporte_valor(nit, nombre, valor, estado):
@@ -131,13 +129,15 @@ def formatear_reporte_valor(nit, nombre, valor, estado):
         formatear_reporte_valor("900123456", "Empresa ABC S.A.S.", 1_500_000, "ACTIVO")
         -> "NIT 900123456 | Empresa ABC S.A.S. | $1,500,000 | ACTIVO"
     """
+    print(f"NIT {nit} | {nombre} | ${valor:,} | {estado}")
+    
     # TODO:
     # 1. Construye una cadena usando un f-string con este formato exacto:
     #    "NIT {nit} | {nombre} | ${valor:,} | {estado}"
     #    (el :, dentro del f-string agrega separadores de miles al número)
     # 2. Guarda el resultado en una variable llamada linea.
     # 3. Retorna linea.
-    pass
+    
 
 
 def mostrar_resultado(etiqueta, valor):
@@ -151,6 +151,7 @@ def mostrar_resultado(etiqueta, valor):
         etiqueta (str): Descripción del resultado.
         valor (float): Valor numérico a mostrar.
     """
+    print(f"{etiqueta}: ${valor:,.0f}")
     # TODO:
     # 1. Imprime usando print() y un f-string con este formato:
     #    "  {etiqueta}: ${valor:,.0f}"
@@ -189,6 +190,22 @@ def generar_ficha_contribuyente(nit, nombre, municipio, periodo, valor, estado):
           Estado     : ACTIVO
         ╚══════════════════════════════════════╝
     """
+    nombre_mayuscula=nombre.upper()
+    municipio_mayuscula=municipio.upper()
+    valor_formateado = f"${valor:,}"
+    ficha= f"""
+    ╔══════════════════════════════════════╗
+    ║  FICHA DE CONTRIBUYENTE              ║
+    ╠══════════════════════════════════════╣
+    nit: {nit}
+    nombre: {nombre_mayuscula}
+    municipio: {municipio_mayuscula}
+    periodo: {periodo}
+    valor: {valor_formateado}
+    estado: {estado}
+    """
+    return ficha
+    
     # TODO:
     # 1. Convierte nombre a mayúsculas con .upper() y guárdalo en
     #    una variable llamada nombre_mayusculas.
